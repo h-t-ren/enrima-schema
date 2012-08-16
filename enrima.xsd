@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:e="http://www.ime.iiasa.ac.at/enrima/solver/example"
+    xmlns:i="http://www.ime.iiasa.ac.at/enrima/model/instance"
+    xmlns:m="http://www.ime.iiasa.ac.at/enrima/model/spec"
+    xmlns:u="http://www.ime.iiasa.ac.at/users"
+    targetNamespace="http://www.ime.iiasa.ac.at/enrima/solver/example">
+    <xs:import namespace="http://www.ime.iiasa.ac.at/enrima/model/instance" schemaLocation="modelInst.xsd"/>
+    <xs:import namespace="http://www.ime.iiasa.ac.at/enrima/model/spec" schemaLocation="modelSpec.xsd"/>
+    <xs:import namespace="http://www.ime.iiasa.ac.at/users" schemaLocation="user-acl.xsd"/>
+    <xs:element name="getModelInstanceRequest">
+     <xs:complexType>
+         <xs:all>
+             <xs:element name="idModelInstance" type="xs:int" minOccurs="1" maxOccurs="1" />
+         </xs:all>
+     </xs:complexType>
+    </xs:element>
+    <xs:element name="getModelInstanceResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="modelSpec" type="m:modelSpec" />
+                <xs:element name="modelSpecRev" type="m:modelSpecRev" />
+                <xs:element name="modelInstance" type="i:modelInstance" />
+                <xs:element name="entityValue" type="i:entityValue"  maxOccurs="unbounded"/>
+                <xs:element name="setMember" type="i:setMember"  maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="storeResultsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="modelInstance" type="i:modelInstance" />
+                <xs:element name="entityValue" type="i:entityValue"  maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="storeResultsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="result" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
